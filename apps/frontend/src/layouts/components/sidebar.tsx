@@ -78,7 +78,6 @@ export default function Sidebar() {
             <ul className="space-y-1">
                 {links.map((link) => <LinkComponent key={link.to} {...link} />)}
             </ul>
-
             <p className="mt-6 px-3 text-xs font-medium tracking-wide text-gray-400 uppercase">Tags</p>
             <ul className="mt-2 space-y-1">
                 {tags.map((tag) => <TagComponent key={tag.level} {...tag} />)}
