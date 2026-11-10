@@ -11,7 +11,9 @@ export default function Header() {
                 PirateHunter <span className="font-normal text-gray-400">/ C2</span>
             </p>
 
+
             <label htmlFor="TicketSearch" className="ml-4 hidden max-w-sm flex-1 sm:block">
+                <MagicWandIcon className="size-4 text-gray-400" />
                 <span className="sr-only">Search tickets</span>
                 <div className="relative">
                     <input

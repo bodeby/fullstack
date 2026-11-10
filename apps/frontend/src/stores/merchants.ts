@@ -7,7 +7,7 @@ interface MerchantState {
 }
 
 export const useMerchantStore = create<MerchantState>((set) => ({
-    count: 0,
+    count: 50,
     increment: () => set((state) => ({ count: state.count + 1 })),
     decrement: () => set((state) => ({ count: state.count - 1 })),
 }))

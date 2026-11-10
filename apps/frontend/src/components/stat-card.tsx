@@ -1,14 +1,14 @@
 
 interface StatCardProps {
     title: string;
-    value: string;
+    value: number;
     change: string;
     icon?: React.ReactNode;
 }
 
 const StatCard = ({ title, value, change }: StatCardProps) => {
     return (
-        <article className="rounded-lg border border-gray-100 bg-blue-100 p-6">
+        <article className="rounded-lg border border-gray-100 bg-blue-100 p-6 grow">
             <div className="flex items-center justify-between">
                 <div>
                     <p className="text-sm text-gray-500 capitalize">{title}</p>

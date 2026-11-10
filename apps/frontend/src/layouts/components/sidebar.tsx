@@ -16,7 +16,6 @@ const links: Link[] = [
 const ActiveLinkClass = 'bg-indigo-50 text-indigo-700';
 const InactiveLinkClass = 'text-gray-600 hover:bg-gray-100 hover:text-gray-900';
 
-
 const LinkComponent = (link: Link) => (
     <li key={link.to}>
         <NavLink
@@ -41,14 +40,29 @@ const LinkComponent = (link: Link) => (
     </li>
 );
 
-const TagComponent = (tag: { name: string; color: string }) => (
-    <li key={tag.name}>
+interface Tag {
+    level: number;
+    label: string;
+    meaning: string;
+    style: string;
+}
+
+const tags: Tag[] = [
+    { level: 1, label: 'Routine', meaning: 'Normal activity; no known threat', style: 'bg-green-500' },
+    { level: 2, label: 'Elevated', meaning: 'Increased awareness warranted', style: 'bg-blue-500' },
+    { level: 3, label: 'Guarded', meaning: 'Credible concern; prepare response resources', style: 'bg-yellow-500' },
+    { level: 4, label: 'High Alert', meaning: 'Active incident or significant threat likely', style: 'bg-orange-500' },
+    { level: 5, label: 'Critical', meaning: 'Immediate coordinated response required', style: 'bg-red-500' },
+];
+
+const TagComponent = (tag: Tag) => (
+    <li key={tag.level}>
         <a
             href="#"
             className="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-100"
         >
-            <span className={`size-2 rounded-full ${tag.color}`}></span>
-            {tag.name}
+            <span className={`size-2 rounded-full ${tag.style}`}></span>
+            {tag.label}
         </a>
     </li>
 );
@@ -67,33 +81,7 @@ export default function Sidebar() {
 
             <p className="mt-6 px-3 text-xs font-medium tracking-wide text-gray-400 uppercase">Tags</p>
             <ul className="mt-2 space-y-1">
-                <li>
-                    <a
-                        href="#"
-                        className="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-100"
-                    >
-                        <span className="size-2 rounded-full bg-rose-500"></span>
-                        Critical
-                    </a>
-                </li>
-                <li>
-                    <a
-                        href="#"
-                        className="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-100"
-                    >
-                        <span className="size-2 rounded-full bg-amber-500"></span>
-                        Warning
-                    </a>
-                </li>
-                <li>
-                    <a
-                        href="#"
-                        className="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-100"
-                    >
-                        <span className="size-2 rounded-full bg-emerald-500"></span>
-                        Safe
-                    </a>
-                </li>
+                {tags.map((tag) => <TagComponent key={tag.level} {...tag} />)}
             </ul>
         </nav>
     );

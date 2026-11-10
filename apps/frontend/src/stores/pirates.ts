@@ -7,7 +7,7 @@ interface PirateState {
 }
 
 export const usePirateStore = create<PirateState>((set) => ({
-    count: 0,
+    count: 12,
     increment: () => set((state) => ({ count: state.count + 1 })),
     decrement: () => set((state) => ({ count: state.count - 1 })),
 }));
