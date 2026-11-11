@@ -1,0 +1,28 @@
+# Build dependencies in an image that has a shell.
+FROM ghcr.io/astral-sh/uv:python3.12-trixie-slim AS builder
+
+WORKDIR /app
+
+# Dependency layer: rebuilds only when dependency files change.
+COPY apps/backend/pyproject.toml apps/backend/uv.lock ./
+RUN uv sync --frozen --no-dev --no-install-project
+
+
+# Hardened, shell-less runtime image.
+FROM ghcr.io/astral-sh/uv:python3.12-dhi
+
+WORKDIR /app
+
+# Bring in the production virtual environment.
+COPY --from=builder /app/.venv /app/.venv
+
+# Bring in only the backend source.
+COPY apps/backend/ ./
+
+ENV PATH="/app/.venv/bin:$PATH" \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
+EXPOSE 8000
+
+CMD ["uv", "run", "fastapi"]
