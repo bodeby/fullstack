@@ -5,6 +5,11 @@ from scanter.models.vessels import Vessel, Faction
 from scanter.models.vessels import Cutter, Sloop, Barge, Galleon, Frigate
 from scanter.models.reports import ConflictReport
 
+# simulation
+from scanter.simulation.engine import SimulationEngine
+
+# storage
+
 
 # from scanter.services
 
@@ -147,4 +152,11 @@ async def setup():
 
 
 def main():
+
+    engine = SimulationEngine(
+        tick_interval=0.2
+    )
+
+    engine.start()
+
     asyncio.run(setup())

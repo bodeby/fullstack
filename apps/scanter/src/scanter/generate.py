@@ -1,8 +1,7 @@
 from redis import Redis
 
 # models
-from scanter.models.vessels import Faction
-from scanter.models.vessels import Cutter, Sloop, Barge, Galleon, Frigate
+from scanter.models.vessels import Faction, Cutter, Sloop, Barge, Galleon, Frigate
 
 """
 Pirate vessels
@@ -19,21 +18,13 @@ pirates = [
         faction=Faction.PIRATE,
         position=(0, 0),
     ),
-    Barge(
-        name="Queen Anne's Revenge", 
-        faction=Faction.PIRATE, 
-        position=(51.40, -0.80)
-    ),
+    Barge(name="Queen Anne's Revenge", faction=Faction.PIRATE, position=(51.40, -0.80)),
     Galleon(
         name="The Flying Dutchman",
         faction=Faction.PIRATE,
         position=(0, 0),
     ),
-    Frigate(
-        name="Adventure Galley", 
-        faction=Faction.PIRATE, 
-        position=(51.40, -0.80)
-    ),
+    Frigate(name="Adventure Galley", faction=Faction.PIRATE, position=(51.40, -0.80)),
 ]
 
 """
